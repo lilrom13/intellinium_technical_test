@@ -8,6 +8,10 @@
 #include <i2c.h>
 
 int init_mpu6050(struct device *);
-int fetch_accelerometer(struct device *, s16_t *buf);
+int update_accelerometer_values(struct device *);
+
+u16_t get_accel_x();
+u16_t get_accel_y();
+u16_t get_accel_z();
 
 #endif //__MPU6050_DRIVER__

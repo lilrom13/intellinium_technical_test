@@ -2,13 +2,12 @@
 #include "mpu6050_driver.h"
 
 struct device *i2c_dev;
-s16_t accelerometer_mesures;
 
 // accel fetching
 void fetch_accelerometer_work(struct k_work *work)
 {
 	// check return value
-	fetch_accelerometer(i2c_dev, &accelerometer_mesures);
+	update_accelerometer_values(i2c_dev);
 }
 K_WORK_DEFINE(accel_work, fetch_accelerometer_work);
 
