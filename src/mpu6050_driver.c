@@ -19,6 +19,8 @@ int init_mpu6050(struct device *i2c_dev)
     return ret;
   }
 
+  printk("chep id = %x\n", chep_id);
+
   if ((ret = i2c_reg_write_byte(i2c_dev, MPU6050_I2C_ADDR, 0x6B, 0x0)) < 0)
   {
     printk("Error %d during write reg 0x%2x.\n", ret, 0x6B);

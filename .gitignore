@@ -1,6 +1,3 @@
 docs/
-.west/
-zephyr/
-net-tools/
 build/
 a.sh

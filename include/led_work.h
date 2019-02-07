@@ -6,9 +6,10 @@
 #include <device.h>
 #include <gpio.h>
 
-#define GPIO_DEV "GPIO_0"
-#define LED_PIN 14
+#define LED_PORT LED0_GPIO_CONTROLLER
+#define LED	LED0_GPIO_PIN
 
 int init_led_work();
+void test(int value);
 
 #endif // __LED_WORK_H__

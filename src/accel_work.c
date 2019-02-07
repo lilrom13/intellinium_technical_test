@@ -20,7 +20,8 @@ K_TIMER_DEFINE(accel_timer, accel_timer_handler, NULL);
 int init_accel_work()
 {
   i2c_dev = device_get_binding(I2C_DEV);
-  if (!i2c_dev) {
+
+	if (!i2c_dev) {
     printk("I2C: Device driver not found.\n");
     return -1;
   }

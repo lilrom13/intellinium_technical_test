@@ -1,13 +1,13 @@
 #include "led_work.h"
 
-struct device *gpio_dev;
+static struct device *gpio_dev;
 
 void toogle_led_work(struct k_work *work)
 {
-		u32_t led_value;
+	u32_t led_value;
 
-		gpio_pin_read(gpio_dev, LED_PIN, &led_value);
-		gpio_pin_write(gpio_dev, LED_PIN, !led_value);
+	gpio_pin_read(gpio_dev, LED, &led_value);
+	gpio_pin_write(gpio_dev, LED, !led_value);
 }
 K_WORK_DEFINE(led_work, toogle_led_work);
 
@@ -17,11 +17,15 @@ void led_timer_handler(struct k_timer *dummy)
 }
 K_TIMER_DEFINE(led_timer, led_timer_handler, NULL);
 
+void test(int value)
+{
+}
+
 int init_led_work()
 {
   int ret;
 
-  gpio_dev = device_get_binding(GPIO_DEV);
+  gpio_dev = device_get_binding(LED_PORT);
 
   if (!gpio_dev) {
 		printk("GPIO: Device driver not found.\n");
@@ -29,7 +33,7 @@ int init_led_work()
 	}
 
   // Init led
-  if ((ret = gpio_pin_configure(gpio_dev, LED_PIN, GPIO_DIR_OUT)) != 0)
+  if ((ret = gpio_pin_configure(gpio_dev, LED, GPIO_DIR_OUT)) != 0)
   {
     printk("Error during gpio configuration %d.\n", ret);
     return -1;
