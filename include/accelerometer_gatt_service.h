@@ -1,6 +1,6 @@
-#ifndef __ACCELEROMTER_GATT_SERVICE__
-#define __ACCELEROMTER_GATT_SERVICE__
+#ifndef ACCELEROMTER_GATT_SERVICE
+#define ACCELEROMTER_GATT_SERVICE
 
-int init_acceleromter_service();
+int init_acceleromter_service(void);
 
-#endif // __ACCELEROMTER_GATT_SERVICE__
+#endif // ACCELEROMTER_GATT_SERVICE

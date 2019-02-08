@@ -1,15 +1,12 @@
-#ifndef __LED_WORK_H__
-#define __LED_WORK_H__
+#ifndef LED_WORK_H
+#define LED_WORK_H
 
-#include <zephyr.h>
-#include <misc/printk.h>
 #include <device.h>
-#include <gpio.h>
 
 #define LED_PORT LED0_GPIO_CONTROLLER
 #define LED	LED0_GPIO_PIN
 
-int init_led_work();
+int init_led_work(void);
 void test(int value);
 
-#endif // __LED_WORK_H__
+#endif // LED_WORK_H

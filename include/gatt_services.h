@@ -1,13 +1,6 @@
-#ifndef __GATT_SERVICE_H__
-#define __GATT_SERVICE_H__
+#ifndef GATT_SERVICE_H
+#define GATT_SERVICE_H
 
-#include <misc/printk.h>
+int init_gatt_services(void);
 
-#include <settings/settings.h>
-
-#include <bluetooth/bluetooth.h>
-#include <bluetooth/conn.h>
-
-int init_gatt_services();
-
-#endif // __GATT_SERVICE_H__
+#endif // GATT_SERVICE_H

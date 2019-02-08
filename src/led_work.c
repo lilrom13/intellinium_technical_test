@@ -1,8 +1,13 @@
+#include <zephyr.h>
+#include <misc/printk.h>
+#include <device.h>
+#include <gpio.h>
+
 #include "led_work.h"
 
 static struct device *gpio_dev;
 
-void toogle_led_work(struct k_work *work)
+static void toogle_led_work(struct k_work *work)
 {
 	u32_t led_value;
 
@@ -11,7 +16,7 @@ void toogle_led_work(struct k_work *work)
 }
 K_WORK_DEFINE(led_work, toogle_led_work);
 
-void led_timer_handler(struct k_timer *dummy)
+static void led_timer_handler(struct k_timer *dummy)
 {
     k_work_submit(&led_work);
 }
@@ -32,7 +37,6 @@ int init_led_work()
 		return -1;
 	}
 
-  // Init led
   if ((ret = gpio_pin_configure(gpio_dev, LED, GPIO_DIR_OUT)) != 0)
   {
     printk("Error during gpio configuration %d.\n", ret);

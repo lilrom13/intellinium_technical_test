@@ -1,17 +1,22 @@
+#include <zephyr.h>
+#include <misc/printk.h>
+#include <device.h>
+#include <i2c.h>
+
 #include "accel_work.h"
 #include "mpu6050_driver.h"
 
-struct device *i2c_dev;
+static struct device *i2c_dev;
 
 // accel fetching
-void fetch_accelerometer_work(struct k_work *work)
+static void fetch_accelerometer_work(struct k_work *work)
 {
 	// check return value
 	update_accelerometer_values(i2c_dev);
 }
 K_WORK_DEFINE(accel_work, fetch_accelerometer_work);
 
-void accel_timer_handler(struct k_timer *dummy)
+static void accel_timer_handler(struct k_timer *dummy)
 {
     k_work_submit(&accel_work);
 }

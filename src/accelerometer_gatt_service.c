@@ -2,6 +2,8 @@
 #include <bluetooth/uuid.h>
 #include <bluetooth/gatt.h>
 
+#include "accelerometer_gatt_service.h"
+
 /* Acceleromter Service Variables */
 static struct bt_uuid_128 accel_uuid = BT_UUID_INIT_128(
 	0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12,

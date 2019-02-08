@@ -1,6 +1,6 @@
-#ifndef __LED_GATT_SERVICE__
-#define __LED_GATT_SERVICE__
+#ifndef LED_GATT_SERVICE
+#define LED_GATT_SERVICE
 
-int init_led_service();
+int init_led_service(void);
 
-#endif // __LED_GATT_SERVICE__
+#endif // LED_GATT_SERVICE

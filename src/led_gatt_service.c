@@ -24,7 +24,7 @@ static ssize_t write_ct(struct bt_conn *conn, const struct bt_gatt_attr *attr,
 	memcpy(value + offset, buf, len);
 
   test(*value);
-  
+
 	return len;
 }
 

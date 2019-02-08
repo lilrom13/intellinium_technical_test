@@ -1,3 +1,8 @@
+#include <misc/printk.h>
+#include <settings/settings.h>
+#include <bluetooth/bluetooth.h>
+#include <bluetooth/conn.h>
+
 #include "gatt_services.h"
 #include "accelerometer_gatt_service.h"
 #include "led_gatt_service.h"
