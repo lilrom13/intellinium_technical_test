@@ -19,8 +19,6 @@ int update_accelerometer_values()
   accel[1] = sys_be16_to_cpu(accel[1]);
   accel[2] = sys_be16_to_cpu(accel[2]);
 
-  printk("x = %d, y = %d, z = %d\n", accel[0], accel[1], accel[2]);
-
   return 0;
 }
 

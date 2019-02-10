@@ -6,7 +6,7 @@
 void main(void)
 {
 	init_led_work();
-	// init_accel_work();
+	init_accel_work();
 	init_gatt_services();
 
 	init_button_interrupts();
