@@ -105,5 +105,7 @@ int init_gatt_services()
 	bt_conn_cb_register(&conn_callbacks);
 	bt_conn_auth_cb_register(&auth_cb_display);
 
+	bt_passkey_set(2569);
+
 	return 0;
 }

@@ -6,13 +6,10 @@
 #include "accel_work.h"
 #include "mpu6050_driver.h"
 
-static struct device *i2c_dev;
-
 // accel fetching
 static void fetch_accelerometer_work(struct k_work *work)
 {
-	// check return value
-	update_accelerometer_values(i2c_dev);
+	update_accelerometer_values();
 }
 K_WORK_DEFINE(accel_work, fetch_accelerometer_work);
 
@@ -24,7 +21,9 @@ K_TIMER_DEFINE(accel_timer, accel_timer_handler, NULL);
 
 int init_accel_work()
 {
-  i2c_dev = device_get_binding(I2C_DEV);
+	struct device *i2c_dev;
+
+	i2c_dev = device_get_binding(I2C_DEV);
 
 	if (!i2c_dev) {
     printk("I2C: Device driver not found.\n");

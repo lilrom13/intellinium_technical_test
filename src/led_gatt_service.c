@@ -31,7 +31,7 @@ static ssize_t write_ct(struct bt_conn *conn, const struct bt_gatt_attr *attr,
 /* Acceleromter Service Declaration */
 static struct bt_gatt_attr attrs[] = {
 	BT_GATT_PRIMARY_SERVICE(&led_uuid),
-	BT_GATT_CHARACTERISTIC(&led_uuid.uuid, BT_GATT_CHRC_WRITE, BT_GATT_PERM_WRITE, NULL, write_ct, &ct),
+	BT_GATT_CHARACTERISTIC(&led_uuid.uuid, BT_GATT_CHRC_WRITE, BT_GATT_PERM_WRITE_AUTHEN, NULL, write_ct, &ct),
 };
 
 static struct bt_gatt_service led_svc = BT_GATT_SERVICE(attrs);

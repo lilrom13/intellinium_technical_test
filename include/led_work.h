@@ -8,5 +8,6 @@
 
 int init_led_work(void);
 void test(int value);
+void change_frequency(void);
 
 #endif // LED_WORK_H

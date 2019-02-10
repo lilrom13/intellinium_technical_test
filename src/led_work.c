@@ -5,25 +5,39 @@
 
 #include "led_work.h"
 
-static struct device *gpio_dev;
+#define STACKSIZE 1024
+#define PRIORITY 7
 
-static void toogle_led_work(struct k_work *work)
+static struct device *gpio_dev;
+static s32_t sleep_time[3] = { 2000, 500, 1000 };
+static int click = 1;
+
+static void toogle_led_work()
 {
 	u32_t led_value;
 
-	gpio_pin_read(gpio_dev, LED, &led_value);
-	gpio_pin_write(gpio_dev, LED, !led_value);
-}
-K_WORK_DEFINE(led_work, toogle_led_work);
+	while (1)
+	{
+			gpio_pin_read(gpio_dev, LED, &led_value);
+			gpio_pin_write(gpio_dev, LED, !led_value);
 
-static void led_timer_handler(struct k_timer *dummy)
-{
-    k_work_submit(&led_work);
+			k_sleep(sleep_time[click % 3]);
+	}
 }
-K_TIMER_DEFINE(led_timer, led_timer_handler, NULL);
+K_THREAD_DEFINE(thread_led_id, STACKSIZE, toogle_led_work, NULL, NULL, NULL,
+		PRIORITY, 0, K_NO_WAIT);
 
 void test(int value)
 {
+	if (value)
+		k_thread_resume(thread_led_id);
+	else
+		k_thread_suspend(thread_led_id);
+}
+
+void change_frequency()
+{
+	click++;
 }
 
 int init_led_work()
@@ -42,8 +56,6 @@ int init_led_work()
     printk("Error during gpio configuration %d.\n", ret);
     return -1;
   }
-
-  k_timer_start(&led_timer, K_SECONDS(0.5), K_SECONDS(0.5));
 
   return 0;
 }
